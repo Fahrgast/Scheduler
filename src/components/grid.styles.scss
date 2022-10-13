@@ -1,0 +1,36 @@
+.grid-container{
+    margin-top: 3rem;
+    display: flex;
+    height: 100vh;
+}
+
+.schedule-container{
+    display: grid;
+    grid-template-columns: repeat(auto, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+
+    .blocker{
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .time-item{
+        grid-column: 1;
+    }
+
+
+}
+
+.schedule-container div {
+    border: 1px solid red;
+    z-index: 999;
+  }
+
+  .days-container{
+    display: grid;
+
+    .timeslot{
+        grid-column: 1;
+       
+    }
+  }
