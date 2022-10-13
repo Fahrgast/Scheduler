@@ -1,5 +1,7 @@
 import "./calender.styles.scss";
 import Table from "react-bootstrap/Table";
+import { useContext } from "react";
+import { CalenderContext } from "../../../contexts/calender.context";
 
 const getTimes = (timeSteps = 30, startTime = 6, endTime = 23) => {
   const finalTimes = [];
@@ -26,44 +28,49 @@ const getTimes = (timeSteps = 30, startTime = 6, endTime = 23) => {
   return finalTimes;
 };
 
-const Calender = ({ timeSteps = 30, startTime = 6, endTime = 23 }) => {
+const Calender = () => {
+  const { timeSteps, startTime, endTime } = useContext(CalenderContext);
+
   const times = getTimes(timeSteps, startTime, endTime);
+
   const visibleDays = [1, 2, 3, 4, 5, 6, 7];
 
   return (
-    <Table
-      striped
-      bordered
-      responsive
-      size="sm"
-      variant="dark"
-      className="calender"
-    >
-      <thead>
-        <tr id="calender-headers" className="calender-headers">
-          <th className="calender-header"></th>
-          <th className="calender-header">Monday</th>
-          <th className="calender-header">Tuesday</th>
-          <th className="calender-header">Wednesday</th>
-          <th className="calender-header">Thursday</th>
-          <th className="calender-header">Friday</th>
-          <th className="calender-header">Saturday</th>
-          <th className="calender-header">Sunday</th>
-        </tr>
-      </thead>
-      <tbody>
-        {times.map((time) => (
-          <tr key={time}>
-            <td id="time-col">{time}</td>
-            {visibleDays.map((day) => (
-              <td className="cell" key={`${day}-${time}`}>
-                <div className="cell-button"></div>
-              </td>
-            ))}
+    <div className="calender-container">
+      <Table
+        striped
+        bordered
+        responsive
+        size="sm"
+        variant="dark"
+        className="calender"
+      >
+        <thead>
+          <tr id="calender-headers" className="calender-headers">
+            <th className="calender-header-item"></th>
+            <th className="calender-header-item">Monday</th>
+            <th className="calender-header-item">Tuesday</th>
+            <th className="calender-header-item">Wednesday</th>
+            <th className="calender-header-item">Thursday</th>
+            <th className="calender-header-item">Friday</th>
+            <th className="calender-header-item">Saturday</th>
+            <th className="calender-header-item">Sunday</th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {times.map((time) => (
+            <tr key={time}>
+              <td id="time-col">{time}</td>
+              {visibleDays.map((day) => (
+                <td className="cell" key={`${day}-${time}`}>
+                  <div className="cell-button"></div>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
   );
 };
 export default Calender;

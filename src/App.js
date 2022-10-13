@@ -1,11 +1,13 @@
-import Grid from "./components/grid.component";
 import Layout from "./components/layout/layout.component";
+import CalenderProvider from "./contexts/calender.context";
 
 const App = () => {
   return (
-    <div className="App">
-      <Layout />
-    </div>
+    <CalenderProvider>
+      <div className="App">
+        <Layout />
+      </div>
+    </CalenderProvider>
   );
 };
 
